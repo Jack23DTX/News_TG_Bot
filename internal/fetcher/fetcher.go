@@ -8,6 +8,7 @@ import (
 	"sync"
 	"time"
 
+	src "TgNewsPet/source"
 	"go.tomakado.io/containers/set"
 )
 
@@ -33,12 +34,12 @@ type Fetcher struct {
 	filterKeywords  []string
 }
 
-func New (
+func New(
 	articles ArticleStorage,
 	sources SourceProvider,
 	fetcherInterval time.Duration,
-	filterKeywords []string
-	) *Fetcher {
+	filterKeywords []string,
+) *Fetcher {
 	return &Fetcher{
 		articles:        articles,
 		sources:         sources,
@@ -47,7 +48,7 @@ func New (
 	}
 }
 
-func (f *Fetcher) Stert (ctx context.Context) error {
+func (f *Fetcher) Start(ctx context.Context) error {
 	ticker := time.NewTicker(f.fetcherInterval)
 	defer ticker.Stop()
 
@@ -78,8 +79,6 @@ func (f *Fetcher) Fetch(ctx context.Context) error {
 	for _, source := range sources {
 		wg.Add(1)
 
-		rssSource := source.NewRSSSourceFromModel(src)
-
 		go func(source Source) {
 			defer wg.Done()
 
@@ -93,7 +92,7 @@ func (f *Fetcher) Fetch(ctx context.Context) error {
 				log.Printf("[ERROR] failed to process items from source %q: %v", source.Name(), err)
 				return
 			}
-		}(rssSource)
+		}(src.NewRSSSourceFromModel(source))
 	}
 
 	wg.Wait()
@@ -104,15 +103,15 @@ func (f *Fetcher) processItems(ctx context.Context, source Source, items []model
 	for _, item := range items {
 		item.Date = item.Date.UTC()
 
-		if f.itemShouldBeSkipped(item){
+		if f.itemShouldBeSkipped(item) {
 			continue
 		}
 
 		if err := f.articles.Store(ctx, model.Article{
-			SourceID: source.ID(),
-			Title: 		 item.Title,
-			Link:		 item.Link,
-			Summary: 	 item.Summary,
+			SourceID:    source.ID(),
+			Title:       item.Title,
+			Link:        item.Link,
+			Summary:     item.Summary,
 			PublishedAt: item.Date,
 		}); err != nil {
 			return err
@@ -122,7 +121,7 @@ func (f *Fetcher) processItems(ctx context.Context, source Source, items []model
 }
 
 func (f *Fetcher) itemShouldBeSkipped(item model.Item) bool {
-	categoriesSet:= set.New(item.Categories...)
+	categoriesSet := set.New(item.Categories...)
 
 	for _, keyword := range f.filterKeywords {
 		titleContainsKeyword := strings.Contains(strings.ToLower(item.Title), keyword)

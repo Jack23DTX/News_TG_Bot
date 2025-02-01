@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>748</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+4||-9223372036854775808|c|G
+4||10|c|G
+4||10|C|G
+4||10|T|G</Grants>
+      <IntrospectionStateNumber>749</IntrospectionStateNumber>
       <ServerVersion>15.10</ServerVersion>
-      <StartupTime>1737912397</StartupTime>
+      <StartupTime>1737915771</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1399,12 +1407,21 @@ false posixrules
 13209||10|C|G
 13209||-9223372036854775808|U|G
 13209||10|U|G</Grants>
-      <IntrospectionStateNumber>748</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
     <database id="3" parent="1" name="postgres">
       <Comment>default administrative connection database</Comment>
+      <Grants>11||10|C|G
+11||-9223372036854775808|U|G
+11||10|U|G
+2200||6171|C|G
+2200||-9223372036854775808|U|G
+2200||6171|U|G
+13209||10|C|G
+13209||-9223372036854775808|U|G
+13209||10|U|G</Grants>
+      <IntrospectionStateNumber>749</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4810,7 +4827,6 @@ false posixrules
     </schema>
     <schema id="261" parent="2" name="pg_catalog">
       <Comment>system catalog schema</Comment>
-      <IntrospectionStateNumber>744</IntrospectionStateNumber>
       <LastIntrospectionLocalTimestamp>2025-01-26.17:37:22</LastIntrospectionLocalTimestamp>
       <ObjectId>11</ObjectId>
       <StateNumber>518</StateNumber>
@@ -4819,13 +4835,30 @@ false posixrules
     <schema id="262" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>748</IntrospectionStateNumber>
       <LastIntrospectionLocalTimestamp>2025-01-26.18:05:38</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <sequence id="263" parent="262" name="articles_id_seq">
+    <schema id="263" parent="3" name="information_schema">
+      <ObjectId>13209</ObjectId>
+      <StateNumber>524</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="264" parent="3" name="pg_catalog">
+      <Comment>system catalog schema</Comment>
+      <ObjectId>11</ObjectId>
+      <StateNumber>518</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="265" parent="3" name="public">
+      <Comment>standard public schema</Comment>
+      <Current>1</Current>
+      <ObjectId>2200</ObjectId>
+      <StateNumber>518</StateNumber>
+      <OwnerName>pg_database_owner</OwnerName>
+    </schema>
+    <sequence id="266" parent="262" name="articles_id_seq">
       <ObjectId>16423</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -4833,7 +4866,7 @@ false posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="264" parent="262" name="goose_db_version_id_seq">
+    <sequence id="267" parent="262" name="goose_db_version_id_seq">
       <ObjectId>16389</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -4841,7 +4874,7 @@ false posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="265" parent="262" name="sources_id_seq">
+    <sequence id="268" parent="262" name="sources_id_seq">
       <ObjectId>16396</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -4849,25 +4882,25 @@ false posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="266" parent="262" name="articles">
+    <table id="269" parent="262" name="articles">
       <ObjectId>16424</ObjectId>
       <StateNumber>747</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="267" parent="262" name="goose_db_version">
+    <table id="270" parent="262" name="goose_db_version">
       <ObjectId>16390</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="268" parent="262" name="sources">
+    <table id="271" parent="262" name="sources">
       <ObjectId>16397</ObjectId>
       <StateNumber>739</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="269" parent="266" name="id">
+    <column id="272" parent="269" name="id">
       <DefaultExpression>nextval(&apos;articles_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4876,42 +4909,42 @@ false posixrules
       <SequenceId>16423</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="270" parent="266" name="source_id">
+    <column id="273" parent="269" name="source_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>747</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="271" parent="266" name="title">
+    <column id="274" parent="269" name="title">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>747</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="272" parent="266" name="link">
+    <column id="275" parent="269" name="link">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>747</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="273" parent="266" name="summary">
+    <column id="276" parent="269" name="summary">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>747</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="274" parent="266" name="published_at">
+    <column id="277" parent="269" name="published_at">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>747</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="275" parent="266" name="created_at">
+    <column id="278" parent="269" name="created_at">
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
@@ -4919,13 +4952,13 @@ false posixrules
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="276" parent="266" name="posted_at">
+    <column id="279" parent="269" name="posted_at">
       <Position>8</Position>
       <StateNumber>747</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="277" parent="266" name="fk_articles_source_id">
+    <foreign-key id="280" parent="269" name="fk_articles_source_id">
       <ColNames>source_id</ColNames>
       <ObjectId>16435</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -4933,7 +4966,7 @@ false posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16397</RefTableId>
     </foreign-key>
-    <index id="278" parent="266" name="articles_pkey">
+    <index id="281" parent="269" name="articles_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16431</ObjectId>
@@ -4942,7 +4975,7 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="279" parent="266" name="articles_link_key">
+    <index id="282" parent="269" name="articles_link_key">
       <ColNames>link</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16433</ObjectId>
@@ -4953,20 +4986,20 @@ false posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="280" parent="266" name="articles_pkey">
+    <key id="283" parent="269" name="articles_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16432</ObjectId>
       <Primary>1</Primary>
       <StateNumber>747</StateNumber>
       <UnderlyingIndexId>16431</UnderlyingIndexId>
     </key>
-    <key id="281" parent="266" name="articles_link_key">
+    <key id="284" parent="269" name="articles_link_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16434</ObjectId>
       <StateNumber>747</StateNumber>
       <UnderlyingIndexId>16433</UnderlyingIndexId>
     </key>
-    <column id="282" parent="267" name="id">
+    <column id="285" parent="270" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4975,21 +5008,21 @@ false posixrules
       <SequenceId>16389</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="283" parent="267" name="version_id">
+    <column id="286" parent="270" name="version_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>737</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="284" parent="267" name="is_applied">
+    <column id="287" parent="270" name="is_applied">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>737</StateNumber>
       <StoredType>boolean|0s</StoredType>
       <TypeId>16</TypeId>
     </column>
-    <column id="285" parent="267" name="tstamp">
+    <column id="288" parent="270" name="tstamp">
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
@@ -4997,7 +5030,7 @@ false posixrules
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <index id="286" parent="267" name="goose_db_version_pkey">
+    <index id="289" parent="270" name="goose_db_version_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16394</ObjectId>
@@ -5006,14 +5039,14 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="287" parent="267" name="goose_db_version_pkey">
+    <key id="290" parent="270" name="goose_db_version_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16395</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
       <UnderlyingIndexId>16394</UnderlyingIndexId>
     </key>
-    <column id="288" parent="268" name="id">
+    <column id="291" parent="271" name="id">
       <DefaultExpression>nextval(&apos;sources_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -5022,28 +5055,28 @@ false posixrules
       <SequenceId>16396</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="289" parent="268" name="name">
+    <column id="292" parent="271" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>738</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="290" parent="268" name="feed_url">
+    <column id="293" parent="271" name="feed_url">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>738</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="291" parent="268" name="priority">
+    <column id="294" parent="271" name="priority">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>738</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="292" parent="268" name="created_at">
+    <column id="295" parent="271" name="created_at">
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
@@ -5051,7 +5084,7 @@ false posixrules
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <index id="293" parent="268" name="sources_pkey">
+    <index id="296" parent="271" name="sources_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16404</ObjectId>
@@ -5060,7 +5093,7 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="294" parent="268" name="sources_pkey">
+    <key id="297" parent="271" name="sources_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16405</ObjectId>
       <Primary>1</Primary>
