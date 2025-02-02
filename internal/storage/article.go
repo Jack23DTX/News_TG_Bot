@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"TgNewsPet/model"
+	"TgNewsPet/internal/model"
 	"context"
 	"database/sql"
 	"github.com/jmoiron/sqlx"
@@ -13,16 +13,17 @@ type ArticlePostgresStorage struct {
 	db *sqlx.DB
 }
 
-func NewArticlePostgresStorage(db *sqlx.DB) *ArticlePostgresStorage {
+func NewArticleStorage(db *sqlx.DB) *ArticlePostgresStorage {
 	return &ArticlePostgresStorage{db: db}
 }
 
-func (s *ArticlePostgresStorage) Store(ctx context.Context, article *model.Article) error {
+func (s *ArticlePostgresStorage) Store(ctx context.Context, article model.Article) error {
 	conn, err := s.db.Connx(ctx)
 	if err != nil {
 		return err
 	}
 	defer conn.Close()
+
 	if _, err := conn.ExecContext(
 		ctx,
 		`INSERT INTO articles (source_id, title, link, summary, published_at)
@@ -68,7 +69,7 @@ func (s *ArticlePostgresStorage) AllNotPosted(ctx context.Context, since time.Ti
 			SourceID:    article.SourceID,
 			Title:       article.Title,
 			Link:        article.Link,
-			Summary:     article.Summary,
+			Summary:     article.Summary.String,
 			PublishedAt: article.PublishedAt,
 			PostedAt:    article.PostedAt.Time,
 			CreatedAt:   article.CreatedAt,
@@ -76,7 +77,7 @@ func (s *ArticlePostgresStorage) AllNotPosted(ctx context.Context, since time.Ti
 	}), nil
 }
 
-func (s *ArticlePostgresStorage) MarkPosted(ctx context.Context, id int64) error {
+func (s *ArticlePostgresStorage) MarkAsPosted(ctx context.Context, article model.Article) error {
 	conn, err := s.db.Connx(ctx)
 	if err != nil {
 		return err
@@ -87,7 +88,7 @@ func (s *ArticlePostgresStorage) MarkPosted(ctx context.Context, id int64) error
 		ctx,
 		"UPDATE articles SET published_at = $1::timestamp WHERE id = $2",
 		time.Now().UTC().Format(time.RFC3339),
-		id,
+		article.ID,
 	); err != nil {
 		return err
 	}
@@ -95,12 +96,12 @@ func (s *ArticlePostgresStorage) MarkPosted(ctx context.Context, id int64) error
 }
 
 type dbArticle struct {
-	ID          int64        `db:"id"`
-	SourceID    int64        `db:"source_id"`
-	Title       string       `db:"title"`
-	Link        string       `db:"link"`
-	Summary     string       `db:"summary"`
-	PublishedAt time.Time    `db:"published_at"`
-	PostedAt    sql.NullTime `db:"posted_at"`
-	CreatedAt   time.Time    `db:"created_at"`
+	ID          int64          `db:"id"`
+	SourceID    int64          `db:"source_id"`
+	Title       string         `db:"title"`
+	Link        string         `db:"link"`
+	Summary     sql.NullString `db:"summary"`
+	PublishedAt time.Time      `db:"published_at"`
+	PostedAt    sql.NullTime   `db:"posted_at"`
+	CreatedAt   time.Time      `db:"created_at"`
 }

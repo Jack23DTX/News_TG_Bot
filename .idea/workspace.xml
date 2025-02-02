@@ -4,12 +4,23 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa615310-146d-4baa-ad30-d39ade10a448" name="Changes" comment="Second commit, connect to db, new table &quot;article&quot;, add gitignore">
+    <list default="true" id="aa615310-146d-4baa-ad30-d39ade10a448" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128/storage_v2/_src_/database/TgNewsPet.OWtPQw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128/storage_v2/_src_/database/TgNewsPet.OWtPQw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/fetcher/fetcher.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/fetcher/fetcher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/notifier/notifier.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/notifier/notifier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/source/rss.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/source/rss.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/storage/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/storage/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/storage/migrations/20250123191821_create_sources.sql" beforeDir="false" afterPath="$PROJECT_DIR$/internal/storage/migrations/20250123191821_create_sources.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/storage/source.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/storage/source.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/summary/openai.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/summary/openai.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,33 +56,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jackdtx&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/jackdtx/GolandPets/TgNewsPet/main.go&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build main.go.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "/Users/jackdtx",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/jackdtx/GolandPets/TgNewsPet/main.go",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/internal" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="TgNewsPet" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="TgNewsPet" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -99,9 +128,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Second commit, connect to db, new table &quot;article&quot;, add gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second commit, connect to db, new table &quot;article&quot;, add gitignore" />
+    <MESSAGE value="problems with main" />
+    <MESSAGE value="add gitignor" />
+    <option name="LAST_COMMIT_MESSAGE" value="add gitignor" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TgNewsPet$go_build_main_go.out" NAME="go build main.go Coverage Results" MODIFIED="1738514938180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

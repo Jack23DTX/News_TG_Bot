@@ -1,10 +1,11 @@
-package cmd
+package main
 
 import (
-	"TgNewsPet/config"
-	fetcher "TgNewsPet/fetcher"
-	"TgNewsPet/notifier"
-	"TgNewsPet/storage"
+	"TgNewsPet/internal/config"
+	"TgNewsPet/internal/fetcher"
+	"TgNewsPet/internal/notifier"
+	"TgNewsPet/internal/storage"
+	"TgNewsPet/internal/summary"
 	"context"
 	"errors"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -22,7 +23,7 @@ func main() {
 		return
 	}
 
-	db, err := sqlx.Connect("postgres", config.Get().DataBaseDSN)
+	db, err := sqlx.Connect("postgres", config.Get().DatabaseDSN)
 	if err != nil {
 		log.Printf("failed to connect to database: %v", err)
 		return
@@ -40,7 +41,7 @@ func main() {
 		)
 		notifier = notifier.New(
 			articleStorage,
-			summarizer,
+			summary.NewOpenAISummarizer(config.Get().OpenAIKey, config.Get().OpenaiModel, config.Get().OpenAIPrompt),
 			botAPI,
 			config.Get().NotificationInterval,
 			2*config.Get().FetchInterval,
@@ -61,4 +62,15 @@ func main() {
 			log.Printf("[INFO] fetcher stopped")
 		}
 	}(ctx)
+
+	//go func(ctx context.Context) {
+	if err := notifier.Start(ctx); err != nil {
+		if !errors.Is(err, context.Canceled) {
+			log.Printf("[ERROR] failed to run notifier: %v", err)
+			return
+		}
+		log.Printf("[INFO] notifier stopped")
+	}
+	//}()
+
 }

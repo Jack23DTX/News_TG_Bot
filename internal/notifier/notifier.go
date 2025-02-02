@@ -1,8 +1,8 @@
 package notifier
 
 import (
-	"TgNewsPet/botkit/markup"
-	"TgNewsPet/model"
+	"TgNewsPet/internal/botkit/markup"
+	"TgNewsPet/internal/model"
 	"context"
 	"fmt"
 	"github.com/go-shiori/go-readability"
@@ -15,12 +15,12 @@ import (
 )
 
 type ArticleProvider interface {
-	AllNotPosted(ctx context.Context, since time.Time, limit int64) ([]model.Article, error)
-	MarkPosted(ctx context.Context, id int64) error
+	AllNotPosted(ctx context.Context, since time.Time, limit uint64) ([]model.Article, error)
+	MarkAsPosted(ctx context.Context, article model.Article) error
 }
 
 type Summarizer interface {
-	summarize(ctx context.Context, text string) (string, error)
+	Summarize(text string) (string, error)
 }
 
 type Notifier struct {
@@ -50,19 +50,39 @@ func New(
 	}
 }
 
+func (n *Notifier) Start(ctx context.Context) error {
+	ticker := time.NewTicker(n.sendInterval)
+	defer ticker.Stop()
+
+	if err := n.SelectAndSendArticle(ctx); err != nil {
+		return err
+	}
+
+	for {
+		select {
+		case <-ticker.C:
+			if err := n.SelectAndSendArticle(ctx); err != nil {
+				return err
+			}
+		case <-ctx.Done():
+			return ctx.Err()
+		}
+	}
+}
+
 func (n *Notifier) SelectAndSendArticle(ctx context.Context) error {
-	tpOneArticle, err := n.articles.AllNotPosted(ctx, time.Now().Add(-n.lookupTimeWindow), 1)
+	topOneArticle, err := n.articles.AllNotPosted(ctx, time.Now().Add(-n.lookupTimeWindow), 1)
 	if err != nil {
 		return err
 	}
 
-	if len(tpOneArticle) == 0 {
+	if len(topOneArticle) == 0 {
 		return nil
 	}
 
-	article := tpOneArticle[0]
+	article := topOneArticle[0]
 
-	summary, err := n.extractSummary(ctx, article)
+	summary, err := n.extractSummary(article)
 	if err != nil {
 		return err
 	}
@@ -71,12 +91,12 @@ func (n *Notifier) SelectAndSendArticle(ctx context.Context) error {
 		return err
 	}
 
-	return n.articles.MarkPosted(ctx, article.ID)
+	return n.articles.MarkAsPosted(ctx, article)
 }
 
 var redundantNewLines = regexp.MustCompile(`\n{3,}`)
 
-func (n *Notifier) extractArticle(ctx context.Context, article model.Article) (string, error) {
+func (n *Notifier) extractSummary(article model.Article) (string, error) {
 	var r io.Reader
 
 	if article.Summary != "" {
@@ -96,7 +116,7 @@ func (n *Notifier) extractArticle(ctx context.Context, article model.Article) (s
 		return "", err
 	}
 
-	summary, err := n.summarizer.summarize(ctx, cleanText(doc.TextContent))
+	summary, err := n.summarizer.Summarize(cleanupText(doc.TextContent))
 	if err != nil {
 		return "", err
 	}
@@ -104,7 +124,7 @@ func (n *Notifier) extractArticle(ctx context.Context, article model.Article) (s
 	return "\n\n" + summary, nil
 }
 
-func cleanText(text string) string {
+func cleanupText(text string) string {
 	return redundantNewLines.ReplaceAllString(text, "\n")
 }
 

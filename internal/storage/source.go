@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"TgNewsPet/model"
+	"TgNewsPet/internal/model"
 	"context"
 	"github.com/jmoiron/sqlx"
 	"github.com/samber/lo"

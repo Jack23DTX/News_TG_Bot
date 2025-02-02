@@ -3,17 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>752</IntrospectionStateNumber>
+      <IntrospectionStateNumber>766</IntrospectionStateNumber>
       <ServerVersion>15.10</ServerVersion>
-      <StartupTime>1738426209</StartupTime>
+      <StartupTime>1738507294</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1407,7 +1399,7 @@ false posixrules
 13209||10|C|G
 13209||-9223372036854775808|U|G
 13209||10|U|G</Grants>
-      <IntrospectionStateNumber>752</IntrospectionStateNumber>
+      <IntrospectionStateNumber>766</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -1422,7 +1414,7 @@ false posixrules
 13209||10|C|G
 13209||-9223372036854775808|U|G
 13209||10|U|G</Grants>
-      <IntrospectionStateNumber>753</IntrospectionStateNumber>
+      <IntrospectionStateNumber>767</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4836,8 +4828,8 @@ false posixrules
     <schema id="262" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>752</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-02-01.17:17:35</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>766</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-02-02.17:09:30</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -8198,10 +8190,10 @@ false posixrules
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="507" parent="262" name="articles_id_seq">
-      <ObjectId>16423</ObjectId>
+      <ObjectId>16468</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
@@ -8214,16 +8206,16 @@ false posixrules
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="509" parent="262" name="sources_id_seq">
-      <ObjectId>16396</ObjectId>
+      <ObjectId>16457</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>738</StateNumber>
+      <StateNumber>762</StateNumber>
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="510" parent="262" name="articles">
-      <ObjectId>16424</ObjectId>
-      <StateNumber>747</StateNumber>
+      <ObjectId>16469</ObjectId>
+      <StateNumber>763</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -8234,8 +8226,8 @@ false posixrules
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="512" parent="262" name="sources">
-      <ObjectId>16397</ObjectId>
-      <StateNumber>739</StateNumber>
+      <ObjectId>16458</ObjectId>
+      <StateNumber>763</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -8243,43 +8235,43 @@ false posixrules
       <DefaultExpression>nextval(&apos;articles_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>integer|0s</StoredType>
-      <SequenceId>16423</SequenceId>
+      <SequenceId>16468</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="514" parent="510" name="source_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="515" parent="510" name="title">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="516" parent="510" name="link">
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="517" parent="510" name="summary">
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
     <column id="518" parent="510" name="published_at">
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
@@ -8287,38 +8279,38 @@ false posixrules
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <column id="520" parent="510" name="posted_at">
       <Position>8</Position>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <foreign-key id="521" parent="510" name="fk_articles_source_id">
       <ColNames>source_id</ColNames>
-      <ObjectId>16435</ObjectId>
+      <ObjectId>16480</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16397</RefTableId>
+      <RefTableId>16458</RefTableId>
     </foreign-key>
     <index id="522" parent="510" name="articles_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16431</ObjectId>
+      <ObjectId>16476</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>747</StateNumber>
+      <StateNumber>763</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <index id="523" parent="510" name="articles_link_key">
       <ColNames>link</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16433</ObjectId>
-      <StateNumber>747</StateNumber>
+      <ObjectId>16478</ObjectId>
+      <StateNumber>763</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
@@ -8327,16 +8319,16 @@ false posixrules
     </index>
     <key id="524" parent="510" name="articles_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16432</ObjectId>
+      <ObjectId>16477</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>747</StateNumber>
-      <UnderlyingIndexId>16431</UnderlyingIndexId>
+      <StateNumber>763</StateNumber>
+      <UnderlyingIndexId>16476</UnderlyingIndexId>
     </key>
     <key id="525" parent="510" name="articles_link_key">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16434</ObjectId>
-      <StateNumber>747</StateNumber>
-      <UnderlyingIndexId>16433</UnderlyingIndexId>
+      <ObjectId>16479</ObjectId>
+      <StateNumber>763</StateNumber>
+      <UnderlyingIndexId>16478</UnderlyingIndexId>
     </key>
     <column id="526" parent="511" name="id">
       <IdentityKind>by-default</IdentityKind>
@@ -8389,55 +8381,56 @@ false posixrules
       <DefaultExpression>nextval(&apos;sources_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>738</StateNumber>
+      <StateNumber>762</StateNumber>
       <StoredType>integer|0s</StoredType>
-      <SequenceId>16396</SequenceId>
+      <SequenceId>16457</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="533" parent="512" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>738</StateNumber>
+      <StateNumber>762</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="534" parent="512" name="feed_url">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>738</StateNumber>
+      <StateNumber>762</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="535" parent="512" name="priority">
+    <column id="535" parent="512" name="created_at">
+      <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>738</StateNumber>
-      <StoredType>integer|0s</StoredType>
-      <TypeId>23</TypeId>
+      <StateNumber>762</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
+      <TypeId>1114</TypeId>
     </column>
-    <column id="536" parent="512" name="created_at">
+    <column id="536" parent="512" name="updated_at">
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>738</StateNumber>
+      <StateNumber>762</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <index id="537" parent="512" name="sources_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16404</ObjectId>
+      <ObjectId>16466</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>738</StateNumber>
+      <StateNumber>762</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="538" parent="512" name="sources_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16405</ObjectId>
+      <ObjectId>16467</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>738</StateNumber>
-      <UnderlyingIndexId>16404</UnderlyingIndexId>
+      <StateNumber>762</StateNumber>
+      <UnderlyingIndexId>16466</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

@@ -1,14 +1,14 @@
 package fetcher
 
 import (
-	"TgNewsPet/model"
+	"TgNewsPet/internal/model"
 	"context"
 	"log"
 	"strings"
 	"sync"
 	"time"
 
-	src "TgNewsPet/source"
+	src "TgNewsPet/internal/source"
 	"go.tomakado.io/containers/set"
 )
 
@@ -16,7 +16,7 @@ type ArticleStorage interface {
 	Store(ctx context.Context, article model.Article) error
 }
 
-type SourceProvider interface {
+type SourcesProvider interface {
 	Source(ctx context.Context) ([]model.Source, error)
 }
 
@@ -28,21 +28,21 @@ type Source interface {
 
 type Fetcher struct {
 	articles ArticleStorage
-	sources  SourceProvider
+	sources  SourcesProvider
 
 	fetcherInterval time.Duration
 	filterKeywords  []string
 }
 
 func New(
-	articles ArticleStorage,
-	sources SourceProvider,
+	articleStorage ArticleStorage,
+	sourcesProvider SourcesProvider,
 	fetcherInterval time.Duration,
 	filterKeywords []string,
 ) *Fetcher {
 	return &Fetcher{
-		articles:        articles,
-		sources:         sources,
+		articles:        articleStorage,
+		sources:         sourcesProvider,
 		fetcherInterval: fetcherInterval,
 		filterKeywords:  filterKeywords,
 	}

@@ -1,7 +1,7 @@
 package source
 
 import (
-	"TgNewsPet/model"
+	"TgNewsPet/internal/model"
 	"context"
 	"github.com/samber/lo"
 

@@ -7,19 +7,22 @@ import (
 	"log"
 	"strings"
 	"sync"
+	"time"
 )
 
 type OpenAISummarizer struct {
 	client  *openai.Client
 	prompt  string
+	model   string
 	enabled bool
 	mu      sync.Mutex
 }
 
-func NewOpenAISummarizer(apiKey string, prompt string) *OpenAISummarizer {
+func NewOpenAISummarizer(apiKey, model, prompt string) *OpenAISummarizer {
 	s := &OpenAISummarizer{
 		client: openai.NewClient(apiKey),
 		prompt: prompt,
+		model:  model,
 	}
 
 	log.Printf("openai summarizer enabled: %v", apiKey != "")
@@ -30,7 +33,7 @@ func NewOpenAISummarizer(apiKey string, prompt string) *OpenAISummarizer {
 	return s
 }
 
-func (s OpenAISummarizer) Summarize(ctx context.Context, text string) (string, error) {
+func (s *OpenAISummarizer) Summarize(text string) (string, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -51,6 +54,9 @@ func (s OpenAISummarizer) Summarize(ctx context.Context, text string) (string, e
 		TopP:        1,
 	}
 
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+	defer cancel()
+
 	resp, err := s.client.CreateChatCompletion(ctx, request)
 	if err != nil {
 		return "", err
@@ -64,5 +70,5 @@ func (s OpenAISummarizer) Summarize(ctx context.Context, text string) (string, e
 
 	sentence := strings.Split(rawSummary, ".")
 
-	return strings.Join(sentence[:len(sentence)-1], "."), nil
+	return strings.Join(sentence[:len(sentence)-1], ".") + ".", nil
 }
