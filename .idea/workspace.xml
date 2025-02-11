@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa615310-146d-4baa-ad30-d39ade10a448" name="Changes" comment="Refactor import statements for better readability&#10;&#10;Reorganized import statements to separate standard library and third-party packages. Added a missing newline for consistent formatting. No functionality changes introduced.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/notifier/notifier.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/notifier/notifier.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/summary/openai.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/summary/openai.go" afterDir="false" />
-    </list>
+    <list default="true" id="aa615310-146d-4baa-ad30-d39ade10a448" name="Changes" comment="Refactor import statements for better readability&#10;&#10;Reorganized import statements to separate standard library and third-party packages. Added a missing newline for consistent formatting. No functionality changes introduced." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +21,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Jack23DTX/News_TG_Bot.git",
+    "accountId": "d9cc8430-1437-4880-a380-85405da0c794"
+  }
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
