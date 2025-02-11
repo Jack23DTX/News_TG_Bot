@@ -1,6 +1,9 @@
 package main
 
 import (
+	"TgNewsPet/internal/bot"
+	"TgNewsPet/internal/bot/middleware"
+	"TgNewsPet/internal/botkit"
 	"TgNewsPet/internal/config"
 	"TgNewsPet/internal/fetcher"
 	"TgNewsPet/internal/notifier"
@@ -8,8 +11,11 @@ import (
 	"TgNewsPet/internal/summary"
 	"context"
 	"errors"
+
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
+
 	"log"
 	"os"
 	"os/signal"
@@ -52,6 +58,32 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
 
+	newsBot := botkit.New(botAPI)
+	newsBot.RegisterCmdView("start", bot.ViewCmdStart())
+	newsBot.RegisterCmdView(
+		"addsource",
+		middleware.AdminOnly(
+			config.Get().TelegramChannelID,
+			bot.ViewCmdAddSource(sourceStorage),
+		),
+	)
+
+	newsBot.RegisterCmdView(
+		"listsources",
+		middleware.AdminOnly(
+			config.Get().TelegramChannelID,
+			bot.ViewCmdListSources(sourceStorage),
+		),
+	)
+
+	newsBot.RegisterCmdView(
+		"deletesource",
+		middleware.AdminOnly(
+			config.Get().TelegramChannelID,
+			bot.ViewCmdDeleteSource(sourceStorage),
+		),
+	)
+
 	go func(ctx context.Context) {
 		if err := fetcher.Start(ctx); err != nil {
 			if !errors.Is(err, context.Canceled) {
@@ -63,14 +95,22 @@ func main() {
 		}
 	}(ctx)
 
-	//go func(ctx context.Context) {
-	if err := notifier.Start(ctx); err != nil {
+	go func(ctx context.Context) {
+		if err := notifier.Start(ctx); err != nil {
+			if !errors.Is(err, context.Canceled) {
+				log.Printf("[ERROR] failed to run notifier: %v", err)
+				return
+			}
+			log.Printf("[INFO] notifier stopped")
+		}
+	}(ctx)
+
+	if err := newsBot.Run(ctx); err != nil {
 		if !errors.Is(err, context.Canceled) {
-			log.Printf("[ERROR] failed to run notifier: %v", err)
+			log.Printf("[ERROR] failed to start bot: %v", err)
 			return
 		}
-		log.Printf("[INFO] notifier stopped")
-	}
-	//}()
 
+		log.Println("[ERROR] bot stopped")
+	}
 }

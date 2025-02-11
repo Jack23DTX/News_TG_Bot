@@ -2,6 +2,7 @@ package summary
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/sashabaranov/go-openai"
 	"log"
@@ -37,20 +38,24 @@ func (s *OpenAISummarizer) Summarize(text string) (string, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	if s.enabled {
-		return "", nil
+	if !s.enabled {
+		return "", fmt.Errorf("openai summarizer is disabled")
 	}
 
 	request := openai.ChatCompletionRequest{
-		Model: "gpt-3.5-turbo",
+		Model: s.model,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleSystem,
-				Content: fmt.Sprintf("%s%s", text, s.prompt),
+				Content: s.prompt,
+			},
+			{
+				Role:    openai.ChatMessageRoleUser,
+				Content: text,
 			},
 		},
-		MaxTokens:   256,
-		Temperature: 0.7,
+		MaxTokens:   300,
+		Temperature: 1,
 		TopP:        1,
 	}
 
@@ -62,12 +67,16 @@ func (s *OpenAISummarizer) Summarize(text string) (string, error) {
 		return "", err
 	}
 
-	rawSummary := strings.TrimSpace(resp.Choices[0].Message.Content)
+	if len(resp.Choices) == 0 {
+		return "", errors.New("no choices in openai response")
+	}
 
+	rawSummary := strings.TrimSpace(resp.Choices[0].Message.Content)
 	if strings.HasSuffix(rawSummary, ".") {
 		return rawSummary, nil
 	}
 
+	// Вырезать все после последнего ".":
 	sentence := strings.Split(rawSummary, ".")
 
 	return strings.Join(sentence[:len(sentence)-1], ".") + ".", nil

@@ -28,7 +28,7 @@ func (s *SourcePostgresStorage) Source(ctx context.Context) ([]model.Source, err
 		return nil, err
 	}
 
-	return lo.Map(sources, func(sources dbSource, _ int) model.Source { return model.Source(sources) }), nil
+	return lo.Map(sources, func(source dbSource, _ int) model.Source { return model.Source(source) }), nil
 
 }
 
