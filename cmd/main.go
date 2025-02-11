@@ -1,6 +1,13 @@
 package main
 
 import (
+	"context"
+	"errors"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"TgNewsPet/internal/bot"
 	"TgNewsPet/internal/bot/middleware"
 	"TgNewsPet/internal/botkit"
@@ -9,17 +16,10 @@ import (
 	"TgNewsPet/internal/notifier"
 	"TgNewsPet/internal/storage"
 	"TgNewsPet/internal/summary"
-	"context"
-	"errors"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-
-	"log"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {

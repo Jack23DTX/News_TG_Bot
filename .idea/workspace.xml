@@ -4,29 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa615310-146d-4baa-ad30-d39ade10a448" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docker-compose.local.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/bot/middleware/admin_only.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/bot/view_cmd_addsource.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/bot/view_cmd_deletesource.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/bot/view_cmd_listsources.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/bot/view_cmd_start.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/botkit/args.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/botkit/bot.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TgNewsPet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TgNewsPet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128/storage_v2/_src_/database/TgNewsPet.OWtPQw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128/storage_v2/_src_/database/TgNewsPet.OWtPQw/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c19b781-3b31-4079-bc4d-7f482a5dc128/storage_v2/_src_/database/TgNewsPet.OWtPQw/schema/public.abK9xQ.meta" beforeDir="false" />
+    <list default="true" id="aa615310-146d-4baa-ad30-d39ade10a448" name="Changes" comment="Refactor import statements for better readability&#10;&#10;Reorganized import statements to separate standard library and third-party packages. Added a missing newline for consistent formatting. No functionality changes introduced.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/storage/migrations/20250123191821_create_sources.sql" beforeDir="false" afterPath="$PROJECT_DIR$/internal/storage/migrations/20250123191821_create_sources.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/storage/source.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/storage/source.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/notifier/notifier.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/notifier/notifier.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/summary/openai.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/summary/openai.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,37 +44,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Docker.docker-compose.dev.yml.bot: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.dev.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.local.yml.bot: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.local.yml.db: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.local.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build main.go.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jackdtx&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/jackdtx/GolandPets/TgNewsPet/main.go&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsDialog.application.dockerMachine&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Docker.docker-compose.dev.yml.bot: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.dev.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.local.yml.bot: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.local.yml.db: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.local.yml: Compose Deployment.executor": "Run",
+    "Go Build.go build main.go.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "/Users/jackdtx",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/jackdtx/GolandPets/TgNewsPet/main.go",
+    "settings.editor.selected.configurable": "vcs.Git"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -101,7 +82,7 @@
       <recent name="$PROJECT_DIR$/internal" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.local.yml.bot: Compose Deployment">
+  <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="TgNewsPet" />
       <working_directory value="$PROJECT_DIR$" />
@@ -223,7 +204,10 @@
     <MESSAGE value="Refactor project structure and improve notifier functionality&#10;&#10;Moved key packages into an internal directory for better modularity. Improved notifier capabilities by adding context handling and enabling article summaries with OpenAI. Updated configurations to support OpenAI model and prompt settings." />
     <MESSAGE value="Update .gitignore to include GoLand-specific exclusions&#10;&#10;Added entries for GoLand IDE to the .gitignore file, expanding coverage for JetBrains IDEs. This ensures exclusion of IDE-specific files like workspace and configuration files, reducing clutter and avoiding potential issues with sensitive or high-churn files." />
     <MESSAGE value="Refactor project structure and enhance notifier functionality&#10;&#10;Moved key packages to an &quot;internal&quot; directory for better modularity. Improved the notifier by adding context handling and OpenAI-powered article summarization. Updated configurations to support the OpenAI model and prompt settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Remove obsolete data source configuration file.&#10;&#10;The XML file for the `TgNewsPet@localhost` data source is deleted, likely because it is no longer in use or necessary. This cleanup reduces clutter in the repository and ensures unused configuration files are not retained." />
+    <MESSAGE value="Delete unused IntelliJ data source configuration file&#10;&#10;Removed a large IntelliJ data source XML file as it is no longer needed. This cleanup reduces clutter and ensures the repository only contains necessary files. No functionality is affected by this change." />
+    <MESSAGE value="Refactor import statements for better readability&#10;&#10;Reorganized import statements to separate standard library and third-party packages. Added a missing newline for consistent formatting. No functionality changes introduced." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor import statements for better readability&#10;&#10;Reorganized import statements to separate standard library and third-party packages. Added a missing newline for consistent formatting. No functionality changes introduced." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

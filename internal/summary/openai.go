@@ -4,11 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/sashabaranov/go-openai"
 	"log"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/sashabaranov/go-openai"
 )
 
 type OpenAISummarizer struct {

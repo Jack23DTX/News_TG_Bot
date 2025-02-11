@@ -1,17 +1,19 @@
 package notifier
 
 import (
-	"TgNewsPet/internal/botkit/markup"
-	"TgNewsPet/internal/model"
 	"context"
 	"fmt"
-	"github.com/go-shiori/go-readability"
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"io"
 	"net/http"
 	"regexp"
 	"strings"
 	"time"
+
+	"TgNewsPet/internal/botkit/markup"
+	"TgNewsPet/internal/model"
+
+	"github.com/go-shiori/go-readability"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 type ArticleProvider interface {
