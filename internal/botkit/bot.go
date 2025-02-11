@@ -2,10 +2,11 @@ package botkit
 
 import (
 	"context"
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"log"
 	"runtime/debug"
 	"time"
+
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 type Bot struct {
@@ -69,6 +70,7 @@ func (b *Bot) handleUpdate(ctx context.Context, update tgbotapi.Update) {
 	if !ok {
 		return
 	}
+
 	view = cmdView
 
 	if err := view(ctx, b.api, update); err != nil {
